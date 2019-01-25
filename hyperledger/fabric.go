@@ -2,11 +2,11 @@ package hyperledger
 
 import (
 	"crypto/ecdsa"
+	"crypto/rand"
 	"crypto/sha256"
+	"encoding/base64"
 	"encoding/hex"
 	"fmt"
-	"github.com/ethereum/go-ethereum/cmd/utils"
-	"github.com/ethereum/go-ethereum/crypto"
 	"runtime"
 	"strconv"
 	"sync"
@@ -309,17 +309,24 @@ func (msp *MSP) validating(id string) bool {
 type FabricCA struct {
 }
 
-func (ca *FabricCA) getKeyPair(seed string) (*ecdsa.PrivateKey, error) {
-	return crypto.GenerateKey()
-}
+//func (ca *FabricCA) getKeyPair(seed string) (*ecdsa.PrivateKey, error) {
+//	return crypto.GenerateKey()
+//}
+//
+//func (ca *FabricCA) getID() string {
+//	key, err := crypto.GenerateKey()
+//	if err != nil {
+//		utils.Fatalf("Failed to generate private key: %s", err)
+//	}
+//	k := hex.EncodeToString(crypto.FromECDSA(key))
+//	return k
+//}
 
 func (ca *FabricCA) getID() string {
-	key, err := crypto.GenerateKey()
-	if err != nil {
-		utils.Fatalf("Failed to generate private key: %s", err)
-	}
-	k := hex.EncodeToString(crypto.FromECDSA(key))
-	return k
+	buff := make([]byte, 10)
+	rand.Read(buff)
+	str := base64.StdEncoding.EncodeToString(buff)
+	return str[:10]
 }
 
 //==================================  FABRIC  =================================//
