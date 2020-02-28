@@ -11,8 +11,6 @@ import (
 	"strconv"
 	"sync"
 	"time"
-
-	"github.com/davecgh/go-spew/spew"
 )
 
 // TRANACTION
@@ -83,7 +81,7 @@ func (l *Ledger) createGenesisBlock() {
 	t := time.Now()
 	genesisBlock := _Block{}
 	genesisBlock = _Block{0, t.String(), nil, calculateHash(genesisBlock), ""}
-	spew.Dump(genesisBlock)
+	//spew.Dump(genesisBlock)
 
 	ledger_mutex.Lock()
 	l.Blockchain = append(l.Blockchain, genesisBlock)
@@ -95,7 +93,7 @@ func (l *Ledger) addBlock(block Block) {
 	prevBlock := l.Blockchain[len(l.Blockchain)-1]
 	newBlock := l.generateBlock(prevBlock, block)
 	l.Blockchain = append(l.Blockchain, newBlock)
-	spew.Dump(newBlock)
+	//spew.Dump(newBlock)
 	ledger_mutex.Unlock()
 }
 
@@ -200,7 +198,6 @@ func (p *Peer) getData(key string) string {
 
 // ORDERER
 type Orderer struct {
-	ordering     bool
 	msp          MSP
 	addrwset     chan RWSet
 	orderer_done chan bool
@@ -215,9 +212,7 @@ func (o *Orderer) Start() {
 	o.orderer_done = make(chan bool)
 
 	go o.producer()
-	if o.ordering {
-		go o.consumer()
-	}
+	go o.consumer()
 }
 
 func (o *Orderer) addRWSet(rwset RWSet) {
@@ -293,7 +288,7 @@ func (o *Kafaka) Pull() []RWSet {
 	return nil
 }
 
-//======= Fabric-CA & MSP
+//==================================  Fabric-CA & MSP =================================//
 // MSP
 type MSP struct {
 	pubKey *ecdsa.PrivateKey
@@ -352,30 +347,33 @@ type Fabric struct {
 func (fab *Fabric) Start() {
 	// 1. three peer simulator start (two endorsing peer, one committing only peer)
 
-	ledger := &Ledger{Blockchain: make([]_Block, 100000), LevelDB: &LevelDB{m: make(map[string]string, 1000000)}}
+	ledger1 := &Ledger{Blockchain: make([]_Block, 100000), LevelDB: &LevelDB{m: make(map[string]string, 1000000)}}
+	ledger2 := &Ledger{Blockchain: make([]_Block, 100000), LevelDB: &LevelDB{m: make(map[string]string, 1000000)}}
+	ledger3 := &Ledger{Blockchain: make([]_Block, 100000), LevelDB: &LevelDB{m: make(map[string]string, 1000000)}}
+
 	fab.ca = &FabricCA{}
 	fab.MSP_org1 = fab.ca.getID()
 	fab.MSP_peer1 = fab.ca.getID()
-	fab.endorser1 = &Peer{peer_type: 1, msp: MSP{id: fab.MSP_peer1}, fabric: fab, ledger: ledger}
+	fab.endorser1 = &Peer{peer_type: 1, msp: MSP{id: fab.MSP_peer1}, fabric: fab, ledger: ledger1}
 	fab.endorser1.Start()
 	fab.MSP_peer2 = fab.ca.getID()
-	fab.endorser2 = &Peer{peer_type: 1, msp: MSP{id: fab.MSP_peer2}, fabric: fab, ledger: ledger}
+	fab.endorser2 = &Peer{peer_type: 1, msp: MSP{id: fab.MSP_peer2}, fabric: fab, ledger: ledger2}
 	fab.endorser2.Start()
 	fab.MSP_peer3 = fab.ca.getID()
-	fab.committer = &Peer{peer_type: 0, msp: MSP{id: fab.MSP_peer3}, fabric: fab, ledger: ledger}
+	fab.committer = &Peer{peer_type: 0, msp: MSP{id: fab.MSP_peer3}, fabric: fab, ledger: ledger3}
 	fab.committer.Start()
 
 	// 2. kafka simulator start
 	fab.kafka = &Kafaka{}
 
 	// 3. two orderer simulator start (first is input, second is ordering)
+	//fab.MSP_orderer1 = fab.ca.getID()
+	//fab.orderer1 = &Orderer{msp: MSP{id: fab.MSP_orderer1},  kafka: fab.kafka, fabric: fab}
+	//fab.orderer1.Start()
 	fab.MSP_orderer1 = fab.ca.getID()
-	fab.orderer1 = &Orderer{msp: MSP{id: fab.MSP_orderer1}, ordering: false, kafka: fab.kafka, fabric: fab}
-	fab.orderer1.Start()
-	fab.MSP_orderer2 = fab.ca.getID()
 	committerList := []*Peer{fab.committer} // generally endorsing peer also have committing peer role but excluded to simplify.
-	fab.orderer2 = &Orderer{msp: MSP{id: fab.MSP_orderer2}, ordering: true, kafka: fab.kafka, committer: committerList, fabric: fab}
-	fab.orderer2.Start()
+	fab.orderer1 = &Orderer{msp: MSP{id: fab.MSP_orderer1}, kafka: fab.kafka, committer: committerList, fabric: fab}
+	fab.orderer1.Start()
 }
 
 func (fab *Fabric) WriteTranaction(key string, value string, auth string) (RWSet, RWSet) {
@@ -391,13 +389,16 @@ func (fab *Fabric) ReadTranaction(key string, auth string) string {
 }
 
 func (fab *Fabric) SendToOrderer(rwset RWSet) {
-	if fab.roundrobin {
-		fab.orderer1.addRWSet(rwset)
-		fab.roundrobin = false
-	} else {
-		fab.orderer2.addRWSet(rwset)
-		fab.roundrobin = true
-	}
+
+	fab.orderer1.addRWSet(rwset)
+
+	//if fab.roundrobin {
+	//	fab.orderer1.addRWSet(rwset)
+	//	fab.roundrobin = false
+	//} else {
+	//	fab.orderer2.addRWSet(rwset)
+	//	fab.roundrobin = true
+	//}
 }
 
 func calculateHash(block _Block) string {

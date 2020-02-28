@@ -6,36 +6,47 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"strconv"
 	"time"
+
+	"github.com/bradhe/stopwatch"
 
 	"github.com/gorilla/mux"
 	"github.com/hyperledger-fabric-400/hyperledger"
 )
 
-
 type Message struct {
-	key string
+	key   string
 	value string
 }
 
 // Start & Test
 func main() {
 	hyperledger.StartFabric()
+	watch := stopwatch.Start()
 
-	hyperledger.WriteTrans("1","bitcoin")
-	hyperledger.WriteTrans("2", "ethereum")
-	hyperledger.WriteTrans("3", "hyperledger")
-	hyperledger.WriteTrans("4", "eos")
+	for i := 0; i < 1000200; i++ {
+		hyperledger.WriteTrans(strconv.Itoa(i), strconv.Itoa(i))
 
-	time.Sleep(1 * time.Second)
+		i++
+	}
 
-	result1 := hyperledger.GetTrans("1")
-	result2 := hyperledger.GetTrans("2")
-	result3 := hyperledger.GetTrans("3")
+	for {
+		result := hyperledger.GetTrans("1000000")
+		if result != "" {
+			break
+		}
+	}
+	watch.Stop()
+	fmt.Printf("seconds elapsed: %v \n", watch.Milliseconds())
 
-	fmt.Printf("key1 : %s \n", result1)
-	fmt.Printf("key2 : %s \n", result2)
-	fmt.Printf("key3 : %s \n", result3)
+	//result1 := hyperledger.GetTrans("1")
+	//result2 := hyperledger.GetTrans("2")
+	//result3 := hyperledger.GetTrans("3")
+	//
+	//fmt.Printf("key1 : %s \n", result1)
+	//fmt.Printf("key2 : %s \n", result2)
+	//fmt.Printf("key3 : %s \n", result3)
 
 	//web_server_run()
 }
@@ -88,7 +99,7 @@ func writeLetter(w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 
-	result := hyperledger.WriteTrans(msg.key,msg.value)
+	result := hyperledger.WriteTrans(msg.key, msg.value)
 	respondWithJSON(w, r, http.StatusCreated, result)
 
 }
