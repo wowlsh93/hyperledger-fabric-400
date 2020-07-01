@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39630909-6472-4e5e-8604-ab0cd54daaf1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hyperledger/fabric.go" beforeDir="false" afterPath="$PROJECT_DIR$/hyperledger/fabric.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/main.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,61 +18,51 @@
       </list>
     </option>
   </component>
-  <component name="GOROOT" path="/usr/local/go" />
+  <component name="GOROOT" path="C:\Go" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1Y6uFf00s0bbEE0zTUIDc8evrXK" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../hyperledger/fabric" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\work\go\src\github.com\wowlsh93\hyperledger-fabric-400\cmd" />
       <recent name="$PROJECT_DIR$/hyperledger" />
       <recent name="$PROJECT_DIR$/fabric" />
       <recent name="$PROJECT_DIR$/backend" />
     </key>
   </component>
-  <component name="RunManager" selected="Go Build.go build main.go">
+  <component name="RunManager">
     <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
       <module name="hyperledger-fabric-400" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
       <filePath value="$PROJECT_DIR$/" />
-      <package value="github.com/hyperledger-fabric-200" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build fabric.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="hyperledger-fabric-400" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <go_parameters value="-i" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/hyperledger/fabric.go" />
-      <package value="github.com/hyperledger-fabric-200" />
-      <directory value="$PROJECT_DIR$/" />
-      <method v="2" />
-    </configuration>
-    <configuration name="go build main.go (1)" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="hyperledger-fabric-400" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <go_parameters value="-i" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/main.go" />
       <package value="github.com/hyperledger-fabric-200" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
@@ -89,12 +77,12 @@
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
     </configuration>
-    <configuration name="go build middleware.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="hyperledger-fabric-400" />
       <working_directory value="$PROJECT_DIR$/" />
-      <go_parameters value="-i" />
+      <go_parameters value="-mod=vendor" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/backend/middleware.go" />
+      <filePath value="$PROJECT_DIR$/cmd/main.go" />
       <package value="github.com/hyperledger-fabric-200" />
       <directory value="$PROJECT_DIR$/" />
       <method v="2" />
@@ -113,64 +101,43 @@
     <recent_temporary>
       <list>
         <item itemvalue="Go Build.go build main.go" />
-        <item itemvalue="Go Build.go build main.go (1)" />
-        <item itemvalue="Go Build.go build middleware.go" />
-        <item itemvalue="Go Build.go build fabric.go" />
+        <item itemvalue="Go Build.go build main.go" />
       </list>
     </recent_temporary>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="567" y="317" width="424" height="484" key="FileChooserDialogImpl" timestamp="1582276744032">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state x="611" y="157" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1593564526274">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="567" y="317" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1582276744032" />
-    <state width="1423" height="228" key="GridCell.Tab.0.bottom" timestamp="1582860491589">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state x="611" y="157" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1593564526274" />
+    <state x="-1491" y="271" key="FileChooserDialogImpl" timestamp="1593507606530">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1423" height="228" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1582860491589" />
-    <state width="1423" height="228" key="GridCell.Tab.0.center" timestamp="1582860491589">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state x="-1491" y="271" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1593507606530" />
+    <state x="478" y="303" key="FileChooserDialogImpl/0.0.2137.1162/2560.0.1603.862@0.0.2137.1162" timestamp="1592781100196" />
+    <state width="1328" height="187" key="GridCell.Tab.0.bottom" timestamp="1593566896649">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1423" height="228" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1582860491589" />
-    <state width="1423" height="228" key="GridCell.Tab.0.left" timestamp="1582860491588">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1328" height="187" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1593566896649" />
+    <state width="1328" height="187" key="GridCell.Tab.0.bottom/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1593564545332" />
+    <state width="1328" height="187" key="GridCell.Tab.0.center" timestamp="1593566896649">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1423" height="228" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1582860491588" />
-    <state width="1423" height="228" key="GridCell.Tab.0.right" timestamp="1582860491589">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1328" height="187" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1593566896649" />
+    <state width="1328" height="187" key="GridCell.Tab.0.center/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1593564545332" />
+    <state width="1328" height="187" key="GridCell.Tab.0.left" timestamp="1593566896649">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1423" height="228" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1582860491589" />
-    <state width="1423" height="282" key="GridCell.Tab.1.bottom" timestamp="1582860183573">
-      <screen x="67" y="27" width="1853" height="1053" />
+    <state width="1328" height="187" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1593566896649" />
+    <state width="1328" height="187" key="GridCell.Tab.0.left/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1593564545332" />
+    <state width="1328" height="187" key="GridCell.Tab.0.right" timestamp="1593566896649">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="1423" height="282" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1582860183573" />
-    <state width="1423" height="282" key="GridCell.Tab.1.center" timestamp="1582860183573">
-      <screen x="67" y="27" width="1853" height="1053" />
-    </state>
-    <state width="1423" height="282" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1582860183573" />
-    <state width="1423" height="282" key="GridCell.Tab.1.left" timestamp="1582860183573">
-      <screen x="67" y="27" width="1853" height="1053" />
-    </state>
-    <state width="1423" height="282" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1582860183573" />
-    <state width="1423" height="282" key="GridCell.Tab.1.right" timestamp="1582860183573">
-      <screen x="67" y="27" width="1853" height="1053" />
-    </state>
-    <state width="1423" height="282" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1582860183573" />
+    <state width="1328" height="187" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1593566896649" />
+    <state width="1328" height="187" key="GridCell.Tab.0.right/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1593564545332" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -181,7 +148,7 @@
           <option name="timeStamp" value="75" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/main.go</url>
+          <url>file://$PROJECT_DIR$/cmd/main.go</url>
           <line>41</line>
           <option name="timeStamp" value="78" />
         </line-breakpoint>
